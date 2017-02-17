@@ -112,55 +112,21 @@
 
 })(jQuery);
 
-let $name = $('input[name="name"]');
+let $name = $('input[name="from_name"]');
 let $email = $('input[name="email"]');
 let $subject = $('input[name="subject"]');
 let $message = $('input[name="message"]');
 let $form = $('form#email-form');
-
-// let data = {
-// 	'name': null,
-// 	'email': null,
-// 	'subject': null,
-// 	'message': null
-// };
-
-// function update(field, value) {
-// 	data[field] = value;
-// }
-// console.log($name);
-// debugger;
-// $name.on('input', (e) => {
-// 	update('name', e.target.value);
-// });
-// $email.on('input', (e) => {
-// 	update('email', e.target.value);
-// });
-// $subject.on('input', (e) => {
-// 	update('subject', e.target.value);
-// });
-// $message.on('input', (e) => {
-// 	update('message', e.target.value);
-// });
-
-// $submit.on('click', (e) => {
-// 	debugger;
-// 	emailjs.send("gmail","template_Roq16NhR",{
-//   name: "Elif",
-//   notes: "Check this out!"
-// 	});
-// });
+let $reset = $("#reset");
 
 $form.submit(function(event){
 	event.preventDefault();
 
 	var params = $form.serializeArray().reduce(function(obj, item) {
-		console.log(obj);
      obj[item.name] = item.value;
      return obj;
   }, {});
 
-  // Change to your service ID, or keep using the default service
   var service_id = "gmail";
 
   var template_id = "template_Roq16NhR";
@@ -174,3 +140,10 @@ $form.submit(function(event){
     });
   return false;
 });
+
+$reset.click(function(e) {
+	$name.innerText = "";
+	$email.innerText = "";
+	$subject.innerText = "";
+	$message.innerText = "";
+} );
